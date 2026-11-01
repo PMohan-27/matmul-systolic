@@ -4,11 +4,12 @@ module PE #(
 ) (
     input logic clk, nrst,
     input logic  signed [INT_WIDTH-1:0] a_in, b_in,
+
     output logic signed [INT_WIDTH-1:0] a_out, b_out, 
     output logic signed [ACCUM_WIDTH-1:0] result
 );
 
-    always_ff @(clk) begin
+    always_ff @(posedge clk) begin
         if(!nrst) begin
             a_out <= '0;
             b_out <= '0;
