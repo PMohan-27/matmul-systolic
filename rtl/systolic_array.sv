@@ -1,7 +1,7 @@
 module systolic_array #(
-    parameter N = 2,
+    parameter N = 3,
     parameter INT_WIDTH = 8,
-    parameter ACCUM_WIDTH = 32
+    parameter ACCUM_WIDTH = 18
 ) (
 
     input logic clk, nrst,

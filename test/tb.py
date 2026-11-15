@@ -2,8 +2,8 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import FallingEdge, RisingEdge
 
-A_SK = [[1, 0], [2, 3], [0, 4], [0, 0]]
-B_SK = [[5, 0], [7, 6], [0, 8], [0, 0]]
+A = [[1, 2], [3, 4]]
+B = [[5, 6], [7, 8]]
 C = [[19, 22], [43, 50]]
 
 
@@ -25,9 +25,10 @@ async def test(dut):
     for t in range(4):
         await FallingEdge(dut.clk)
         for i in range(2):
-            dut.a_edge[i].value = A_SK[t][i]
-            dut.b_edge[i].value = B_SK[t][i]
-            
+            k = t - i
+            dut.a_edge[i].value = A[i][k] if 0 <= k < 2 else 0
+            dut.b_edge[i].value = B[k][i] if 0 <= k < 2 else 0
+
     await FallingEdge(dut.clk)
 
     for i in range(2):
